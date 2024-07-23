@@ -1,0 +1,114 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block main-content %}
+<link rel="stylesheet" href="{% static "app/css/shop.css" %}">
+<div class=" py-5 bg-image" style="
+  background-image: url('{% static 'app/images/background_banner.png' %}');
+  height: 400px; margin-bottom: 50px; margin-top: 105px; background-size: cover">
+  <div class="container ">
+    <div class="mask ">
+      <div class=" d-flex align-items-start h-100 banner" style="width: 30rem;">
+        <div class="text-white mx-2">
+          <h1 class="mb-3 p-2">COFFEE IS FUEL TO START A GREAT DAY</h1>
+          <p class="mb-3 p-2">The coffee is brewed by first roasting the green coffee beans over hot coals in a brazier. given an opportunity to sample.</p>
+          <a class="btn btn-light btn-lg mx-2" href="#!" role="button">READ MORE</a>
+          <a class="btn btn-outline-light btn-lg mx-2" href="#!" role="button">TESTY COFFEE</a>
+          <div class="my-4">
+            <a class="mx-2" href="#">
+              <i class="fab fa-facebook-square" style="color: white; font-size: 20px;"></i>
+            </a>
+            <a class="mx-2" href="#">
+              <i class="fab fa-google" style="color: white; font-size: 20px;"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Card -->
+<div class="container">
+  <div class="main-container ">
+    <div class="horizontal-bar">
+      <div>
+        Showing
+      </div>
+      <div class="order-by">
+        <div class="dropdown ">
+          <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="user-name">Short By New</span>
+          </a>
+          <ul class="dropdown-menu  dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="">Short By New 1</a></li>
+            <li><a class=" dropdown-item" href="">Short By New 2</a></li>
+            <li><a class="dropdown-item" href="">Short By New 3</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="grid-container">
+      <div class="row card1">
+        <h4 style="margin-bottom: 30px;">Result search for: {{searched}}</h4>
+
+        <!-- Card 1 -->
+        {% for product in keys %}
+        <div class="el-wrapper">
+          <div class="box-up">
+            <a href="{% url 'detail' %}?id={{product.id}}">
+              <img class="img" style=" object-fit: cover;" src="{{product.ImageURL}}" alt="">
+              <div class="img-info">
+                <div class="info-inner">
+                  <span class="p-name">{{product.name}}</span>
+                  <span class="p-company">{{product.category.first.name}}</span>
+                </div>
+                <div class="a-size">Available sizes : <span class="size">S , M , L , XL</span></div>
+              </div>
+            </a>
+          </div>
+
+          <div class="box-down">
+            <div class="h-bg">
+              <div class="h-bg-inner"></div>
+            </div>
+
+            <a class="cart1 update-cart" data-product={{product.id}} data-action="add">
+              <span class="price" style="cursor: pointer;">${{product.price | floatformat:0}}</span>
+              <span class="add-to-cart ">
+                <span class="txt" style="cursor: pointer;">Add in cart</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+        <!-- End Card 1 -->
+      </div>
+
+      <!-- Search bar -->
+      <div class="search-grid-container">
+        <div class="search-container">
+          <div class="search-bar-container">
+            <h2>SEARCH HERE</h2>
+            <form class="search-bar" role="search" method="POST" action="{% url 'search' %}">
+              {% csrf_token %}
+              <input class="search-input" type="search" placeholder="Search" aria-label="Search" name="searched" />
+              <button class="search-btn" type="submit">Go</button>
+            </form>
+          </div>
+        </div>
+        <div class="category-container">
+          <div class="category-bar-container">
+            <h2>CATEGORIES</h2>
+            <form class="category-bar">
+              {% for category in categories %}
+              <a href="{% url 'category' %}?category={{category.slug}}"><input class="category-input" id="category" type="button" value="{{category.name}}" /></a>
+              {% endfor %}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main-content %}

@@ -1,0 +1,208 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="icon" href="{% static "app/images/logo" %}">
+  <link rel="stylesheet" href="{% static "app/css/styles.css" %}" />
+  <link rel="stylesheet" href="{% static "app/css/footer.css" %}" />
+  <link rel="stylesheet" href="{% static "app/css/cart.css" %}" />
+  <link rel="stylesheet" href="{% static "app/css/checkout.css" %}" />
+  <link rel="stylesheet" href="{% static "app/css/category.css" %}" />
+
+  <script type="text/javascript">
+    let user = '{{request.user}}'
+
+    let cookieValue = null;
+
+    function getCookie(name) {
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+  </script>
+  <title>Q&Q</title>
+</head>
+
+<body>
+  <!-- Menu -->
+  <a href="" name="header"></a>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black fixed-top" id="headerNav" style="border-bottom: 1px solid rgba(255, 255, 255, 0.226);">
+      <div class="container">
+        <a class="navbar-brand d-block d-lg-none" href="#">
+          <img src="{% static 'app/images/logo.png' %}" height="80" />
+        </a>
+        <div class="d-flex" style="justify-content: center; align-items: center;">
+          <!-- Icon Account -->
+          <div class="nav-item dropdown search-cart-account2 px-2" id="searchMenu" style="padding-left: 0px !important;">
+            <div class="nav-link mx-2" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+              <i id="searchIcon" class="fas fa-search"></i>
+            </div>
+            <div class="dropdown-menu dropdown-menu-end dropdown-search-bar" aria-labelledby="dropdownMenuButton1">
+              <form role="search" method="POST" action="{% url 'search' %}" id="searchForm1">
+                {% csrf_token %}
+                <div class="search-menu">
+                  <input class="search" type="text" placeholder="Search.." name="searched" style="border: none; outline: none; padding-left: 3px;" id="searchInput">
+                  <a class="search-item" id="searchIcon1" onclick="submitSearchForm(event)">
+                    <i class="fab fa-searchengin"></i>
+                  </a>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="nav-item search-cart-account2 px-2">
+            <a class="nav-link mx-2" href="{% url 'cart' %}" style="padding-left: 0px; margin-right: 0px !important; margin-left: 10px !important;">
+              <i class="fas fa-shopping-cart"><span class="count-items">{{cartItems}}</span></i>
+            </a>
+          </div>
+          <div class="px-2"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link mx-2 {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link mx-2 {% if request.path == '/about/' %}active{% endif %}" href="#">About</a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link mx-2 {% if request.path == '/menu/' %}active{% endif %}" href="#">Menu</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav mx-auto ">
+            <li class="nav-item d-none d-lg-block">
+              <a class="nav-link mx-2" href="#">
+                <img src="{% static 'app/images/logo.png' %}" height="80" />
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link mx-2 {% if request.path == '/shop/' %}active{% endif %}" href="{% url 'shop' %}">
+                Shop
+              </a>
+            </li>
+            <li class="nav-item dropdown search-cart-account" id="searchMenu1">
+              <div class="nav-link mx-2" id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                <i id="searchIcon2" class="fas fa-search"></i>
+              </div>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+                <form role="search" method="POST" action="{% url 'search' %}" id="searchForm">
+                  {% csrf_token %}
+                  <div class="search-menu">
+                    <input class="search" type="text" placeholder="Search.." name="searched" style="border: none; outline: none; padding-left: 3px;" id="searchInput1">
+                    <a class="search-item" id="searchIcon3" href="#" onclick="submitSearchForm1(event)">
+                      <i class="fab fa-searchengin"></i>
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </li>
+            <li class="nav-item search-cart-account">
+              <a class="nav-link mx-2" href="{% url 'cart' %}" style="padding-left: 0px; margin-right: 0px !important; margin-left: 12px !important;">
+                <i class="fas fa-shopping-cart"><span class="count-items">{{cartItems}}</span></i>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{request.user.username | default:"Account"}}
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li style="display: {{user_not_login}}"><a class="dropdown-item" href=" {% url 'login' %}">Login</a></li>
+                <li style="display: {{user_not_login}}"><a class=" dropdown-item" href=" {% url 'register' %}">Sign up</a></li>
+                <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- Main body -->
+
+  {% block main-content %}{% endblock main-content %}
+  <!-- Footer -->
+  <hr style="margin-top: 0px;">
+  <footer class="footer">
+    <div class="container">
+      <a href="#header">
+        <div style="position: relative; bottom: 83px; text-align: center; " class="arrow-up">
+          <img class="up-to-header" style="width: 50px;" src="{% static 'app/images/Group43.png' %}" alt="">
+        </div>
+      </a>
+
+      <div class="row">
+        <div class="footer-col">
+          <h4>company</h4>
+          <ul>
+            <li><a href="#">about us</a></li>
+            <li><a href="#">our services</a></li>
+            <li><a href="#">privacy policy</a></li>
+            <li><a href="#">affiliate program</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>get help</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">shipping</a></li>
+            <li><a href="#">returns</a></li>
+            <li><a href="#">order status</a></li>
+            <li><a href="#">payment options</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>categories</h4>
+          <ul>
+            <li><a href="#">cappuccino</a></li>
+            <li><a href="#">creuset cocotte</a></li>
+            <li><a href="#">rosted coffee</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>follow us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+          <div>
+            <img class="logo-brand" style="width: 100%; height: 100%; object-fit: contain;" src="{% static 'app/images/logo.png' %}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- javascript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static "app/js/search1.js" %}"></script>
+  <script src="{% static "app/js/search2.js" %}"></script>
+  <script src="{% static "app/js/cart.js" %}"></script>
+  <script src="{% static "app/js/scripts.js" %}"></script>
+
+
+</body>
+
+</html>

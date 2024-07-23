@@ -1,0 +1,122 @@
+2.1. Mô Hình MVC
+Model: Định nghĩa cấu trúc dữ liệu và thao tác với cơ sở dữ liệu.
+View: Định nghĩa giao diện người dùng.
+Controller: Xử lý logic điều khiển và kết nối giữa Model và View.
+
+2.2. ORM (Object-Relational Mapping)
+Cho phép tương tác với cơ sở dữ liệu bằng cách sử dụng các đối tượng Python thay vì SQL trực tiếp.
+Giảm độ phức tạp khi làm việc với cơ sở dữ liệu.
+
+2.3. Admin Interface
+Giao diện quản trị sẵn có giúp quản lý dữ liệu một cách dễ dàng.
+Tự động tạo giao diện quản trị từ các model.
+
+2.4. URL Routing và Views
+Quản lý URL thông qua file urls.py.
+Views xử lý logic và trả về nội dung để hiển thị.
+
+2.5. Templates và Static Files
+Sử dụng templates để hiển thị dữ liệu.
+Quản lý static files (CSS, JavaScript) dễ dàng.
+
+Công thức tính điểm
+	Đóng góp cá nhân: nvht * yêu cầu
+	Đóng góp toàn phần: đóng góp cá nhân * nv được giao + giao tiếp (%)
+	Điểm: toàn phần * 10 / 25 
+
+Huy:
+	Xin chào mọi người, em tên là Huy. Hôm nay, nhóm chúng em sẽ báo cáo và thuyết trình về đồ án xây dựng website bán cafe tuy còn rất nhiều thiếu sót nhưng chúng em đã dành nhiều tâm huyết để xây dựng lên - Quantum Quench Café.
+	Trước tiên em xin nói 1 chút chúng em xây dựng dự án này và cũng là người sử dụng nên khách hàng của chúng em sẽ là người người mua cafe chứ không phải là người sử dụng website
+	Sau đây em xin mời ... để báo cáo phần các đánh giá và tính điểm các thành viên
+Tân:
+	Xin chào mọi người, em tên là Tân, là nhóm trưởng của Quantum Quench
+	Em xin báo cáo và đánh giá các thành viên trong nhóm theo cách tính điểm của riêng em
+	1: Đây là bảng tiêu chí đánh giá qua 4 mức độ và 4 màu khác nhau 
+		- Awareness: Có ý thức cao và hoàn thành tốt nhiệm vụ được giao 
+		- Conscientious: Tận tâm và chịu dành thời gian cho nhóm
+		- Lackadaisical: Có làm nhưng nhiều sai sót, sơ sài và chưa tận tâm
+		- Introverted: Ít giao tiếp và không hoàn thành nhiệm vụ được giao
+	2: Đây là bảng đánh giá các thành viên 
+		- Công thức em tính sẽ là:
+			+ Đầu tiên em có phần nhiệm vụ được giao là tổng nhiệm vụ các thành viên được nhận và cả 4 người cộng lại không quá 100 
+			+ Thứ hai nhiệm vụ hoàn thành tức là tỷ số phần trăm hoành thành nhiệm vụ được giao
+			+ Thứ ba là tỉ số nhiệm vụ đã hoàn thành có đặt chỉ tiêu hay không
+			+ Cuối cùng là đóng góp ý kiến vào giao tiếp ở trong nhóm là phần điểm cộng cho đóng góp toàn phần
+			=> Bên đây là đóng góp cá nhân lấy NHIỆM VỤ HOÀN THÀNH (lấy số nguyên VD: 70% tức là 70) * MỨC ĐỘ ĐẠT YÊU CẦU (%)
+			=> Còn đóng góp cho nhóm là em lấy ĐÓNG GÓP CÁ NHÂN * NHIỆM VỤ ĐƯỢC GIAO + ĐÓNG GÓP Ý KIẾN (lấy % VD: +1 thì sẽ là 10%)
+			=> Cuối cùng là tính điểm (điểm tối đa là ĐÓNG GÓP TOÀN PHẦN SẼ đạt 25%) tổng đóng góp toàn phần của 4 thành viên không quá 100% do đó 25% là 10 điểm nên em sẽ tính ra được điểm của các thành viên dựa trên ĐÓNG GÓP TOÀN PHẦN
+			*Lưu ý: vì có điểm cộng nên tổng ĐIỂM ĐÓNG GÓP của 4 thành viên sẽ trên 100%
+	Đây là slide đánh giá cho từng thành viên thầy hãy xem qua
+		+ Về em nhóm trưởng sẽ là người phân chia nhiệm vụ, thiết kế powerpoint, lên ý tưởng và viết front-end, back-end cho toàn bộ đồ án này
+		+ Võ Hoàng Minh sẽ đảm nhiệm phần thiết kế powerpoint và thiết kế giao diện
+		+ Quang Huy sẽ phụ trách phần font-end hỗ trợ em
+		+ Tâm đảm nhiệm phần thiết kế logo, thiết kế powerpoint và thiết kế giao diện
+	Đấy là toàn bộ phần đánh giá sơ bộ về các thành viên trong nhóm
+	Để tiếp tục phần giới thiệu đồ án em mời Huy lên và giới thiệu cơ bản về đồ án của chúng em
+Huy:
+	Trong đồ án này chúng em sử dụng Visual Studio Code là môi trường chính để bắt đầu cùng với các ngôn ngữ cơ bản như HTML, CSS để định hình giao diện, JS là cho các sự kiện trong website và MySQL để quản lí dữ liệu cho các sản phẩm. Với chủ đề là website bán cafe thì chúng em vẫn có đầy đủ các chức năng quản trị trên giỏ hàng và đăng kí/ đăng nhập. Đây là toàn bộ phần giới thiệu cơ bản về đồ án 
+	Tiếp theo em xin mời ... để giới thiệu phần quá trình thiết kế và xây dựng lên website này
+Minh:
+	Xin chào tất cả mọi người, em tên là Minh. Em sẽ giới thiệu sơ về tên website bán cafe Quantum Quench mà chúng em đã tìm và đặt cho dự bước đầu tiên khi thực hiện đồ án này.
+
+	"Quantum" mang đến một hình ảnh về sự phức tạp và sự đa dạng của vũ trụ, là một khám phá không ngừng trong thế giới học thuật. Nó là biểu tượng của sự tò mò và mong đợi, giống như khi chúng ta mở rộng hiểu biết và khám phá những điều mới trong cuộc sống.
+
+	Còn "Quench," từ này không chỉ đơn thuần là việc giải khát bằng cách uống một cốc cà phê thơm ngon mà còn chứa đựng ý nghĩa sâu sắc. Trong lĩnh vực nghiên cứu vật lý, "quenching" đề cập đến việc thay đổi nhanh chóng từ trạng thái này sang trạng thái khác, là một hiện tượng quan trọng trong lĩnh vực vật lý lý thuyết.
+
+	Quantum Quench không chỉ là nơi chúng ta quench thirst về cảm xúc và khẩu vị, mà còn là không gian nơi chúng ta "quench" sự tò mò và mong đợi, tìm kiếm sự đổi mới trong mỗi chén cà phê và mỗi khoảnh khắc. Hãy cùng nhau khám phá Quantum Quench, nơi nghệ thuật và khoa học kết hợp, tạo nên một môi trường học thuật và sáng tạo, nơi mà mỗi lượt ngụ cảm thụ đều là một cuộc phiêu lưu vô tận.
+	
+	Đấy là toàn bộ ý nghĩa về Quantum Quench của chúng em
+	
+	Tiếp sau đây em xin mời Tâm tiếp tục giới thiệu phần tiếp theo 
+Tâm:
+	Xin chào mọi người, em tên là Tâm. Em sẽ giới thiệu về bước tiếp theo của đồ án là thiết kế giao diện. Ở phần này chúng em sẽ dùng phần mềm chính là Figma để thiết kế và phân chia layout cho phù hợp, tìm kiếm và edit hình ảnh cho các trang như Home, Đăng nhập, Đăng ký, Giỏ hàng, Menu, Thanh toán làm sao cho đầy đủ các yêu cầu của đồ án, đạt chỉ tiêu về điểm số và để chuẩn bị cho phần thực thi hóa bằng các ngôn ngữ ở 2 phần sau
+	
+	Tiếp theo em xin mời nhóm trưởng sẽ tiếp tục giới thiệu phần Front-end và Back-end của dự án
+Tân:
+	Như phần giới thiệu của Huy, front-end là phía giao diện em sử dụng HTML, CSS và JS để lập trình lên toàn bộ giao diện này với sự hỗ trợ của framework bootstrap để dàn layout và responsive và font awesome cho các icon 
+	Phần back-end phía server em sử dụng framework django là 1 trong những framework của python để cấu hình server cũng như là kết nối tới MySQL em sẽ giới thiệu kĩ hơn về django ở phần tiếp theo
+	Đây là hình ảnh minh họa 
+	
+	Tiếp sau đây em sẽ giới thiệu về các thư viện và framework chúng em đã dùng trong đồ án này
+		- Thứ nhất cx chính là phần quan trọng trong đồ án lần này chính là django là một framework web phổ biến được xây dựng bằng Python, được thiết kế để giúp nhà phát triển xây dựng ứng dụng web một cách nhanh chóng và hiệu quả
+		- Đây là những ưu điểm của django mà chúng em đã quyết định lựa chọn và áp dụng nó vào đồ án lần này
+			+ Thứ nhất sử dụng mô hình MVC
+				: Như mọi người cũng nghe nói về mô hình này là một mô hình phổ biến dùng để thiết kế website qua 3 lớp chính Model-View-Controller
+			+ Thứ hai ORM (Object-relational Mapping)
+				: Cho phép tương tác với cơ sở dữ liệu bằng cách sử dụng các đối tượng Python thay vì SQL trực tiếp. Và giảm độ phức tạp khi làm việc với cơ sở dữ liệu
+			+ Thứ ba Admin Interface
+				: django cung cấp cho chúng ta một Giao diện quản trị để quản lý dữ liệu một cách dễ dàng. Và tự động tạo giao diện quản trị từ các model. Và tất nhiên tuy nói là tự động nhưng mình vẫn cần phải định nghĩa và cấu hình cho nó
+			+ Thứ tư URL Routing và Views
+				: Cung cấp giao Quản lý URL thông qua file urls.py mà người ta hay gọi nó là router đấy. Và file views xử lý logic và trả về nội dung để hiển thị.
+			+ Và cuối cùng là Templates và Static Files
+				: cho phép sử dụng templates để hiển thị dữ liệu. Và quản lý static files (CSS, JavaScript) dễ dàng.
+		- Và đây là các framework và thư viện khác em sử dụng trong dự án như Bootstrap, Pymysql của (Python) để kết nối với mysql, và font awesome để cho ra những icon chất lượng
+	
+	Và tiếp sau đây em xin giới thiệu qua các tính năng có trong website
+		- Thứ nhất Đăng nhập và Đăng ký
+			+ Cho phép người dùng đăng ký hoặc đăng nhập để mua hàng
+			+ Có thể phân quyền cho khách hàng hay admin
+		- Thứ hai là trang Menu và chi tiết
+			+ Cho phép xem thông tin sản phẩn được tải lên từ csdl
+			+ Cho phép chọn số lượng và thêm vào giỏ hàng
+			+ Tìm kiếm theo tên
+			+ Tìm kiếm theo loại
+		- Thứ ba là trang giỏ hàng va thanh toán
+			+ Cho phép thêm hàng vào giỏ hàng
+			+ Cho phép cập nhật, tăng, giảm số lượng và xóa sản phẩm ra khỏi giỏ hàng
+			+ Tính tống tiền và tổng số lượng sản phẩm có trong giỏ hàng
+		- Thứ tư là reponsive là phần mất rất nhiều thời gian của em
+			+ Cho phép trang web trông đẹp trên nhiều thiết bị
+			+ Và có thể hợp trên điện thoại nhỏ nhất hiện nay là iphone5 với độ rộng 320px
+	
+	Cuối cùng là phần tổng kết và đánh gía về đồ án và nhóm làm việc
+		- Tổng quan thì website này có đầy những tính năng đạt yêu cầu nhưng vẫn còn nhiều chỗ cần cải thiện để tăng tính linh hoạt cho website 
+	Và đây là những phần cần cải thiện trong dự án lần này 
+		thứ nhất là thiếu tính năng chọn size
+		thứ hai thiếu tính năng tìm kiếm bỏ qua in hoa, dấu và khoảng tráng
+		thứ ba thiếu tính năng phân trang trên tìm kiếm và phân loại
+		thứ tư thiếu tính năng thanh toán và gửi mail về cho người dùng
+		thứ năm tiến độ và phối hợp với các thành viên trong nhóm vẫn chưa được tốt
+		thứ sáu là chưa đầy đủ các liên kết và cách viết code vẫn chưa được tối ưu
+		thứ bảy vẫn có những lỗi vặt liên quan đến responsive có thể vẫn chưa tìm ra
+		

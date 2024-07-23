@@ -1,0 +1,160 @@
+{% extends "app/base.html" %}
+{% load static %}
+{% block main-content %}
+<style>
+  /* body {
+    background-color: white;
+  } */
+
+  .arrow-up {
+    bottom: 67px !important;
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  @media (max-width:330px) {
+    .product-price {
+      width: 30%;
+    }
+
+    .product-name {
+      width: 30%;
+    }
+  }
+
+  .up-to-header {
+    display: none;
+  }
+</style>
+<div class=" container-fluid my-5 " style="background-color: white; margin-bottom: 0px !important;position: relative; top: -10px;">
+  <div class="row justify-content-center " style="margin-top: 130px;">
+    <div class="col-xl-10">
+      <div class="row justify-content-around">
+        <div class="col-md-5">
+          <div class="card border-0">
+            <div class="card-header pb-0">
+              <h2 class="card-title space " style="padding-top: 15px;">Checkout</h2>
+              <p class="card-text  mt-4  space">SHIPPING DETAILS</p>
+              <hr class="my-0">
+            </div>
+            <div class="card-body">
+              <div class="row mt-4">
+                <div class="col">
+                  <p class=" mb-2">PAYMENT DETAILS</p>
+                  <hr class="mt-0">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="NAME" class="small  mb-1">NAME ON CARD</label>
+                <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="NGUYEN MINH TAN">
+              </div>
+              <div class="form-group">
+                <label for="NAME" class="small  mb-1">CARD NUMBER</label>
+                <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="4534 5555 5555 5555">
+              </div>
+              <div class="row no-gutters">
+                <div class="col-sm-6 pr-sm-2">
+                  <div class="form-group">
+                    <label for="NAME" class="small  mb-1">VALID THROUGH</label>
+                    <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="06/21">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="NAME" class="small  mb-1">CVC CODE</label>
+                    <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="183">
+                  </div>
+                </div>
+                <div class="back-to-shop" style="margin-top: 20px;">
+                  <a href="{% url 'cart' %}"><span style="color: black;">&leftarrow;</span><span class=""> Back to cart</span></a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="card border-0 ">
+            <div class="card-header card-2">
+              <p class="card-text  mt-md-4  mb-2 space">YOUR ORDER </p>
+              <hr class="my-2">
+            </div>
+
+            <div class="card-body pt-0">
+              {% for item in items %}
+              <div class="row  justify-content-between my-2">
+                <div class="col-2 col-md-2">
+                  <div class="media flex-column flex-sm-row">
+                    <img class=" img-fluid" src="{{item.product.ImageURL}}" width="62" height="62">
+                  </div>
+                </div>
+                <div class="col-5 media-body  my-auto product-name">
+                  <p class="mb-0"><b>{{item.product.name}}</b></p>
+                </div>
+                <div class=" pl-0 flex-sm-col col-auto  my-auto ">
+                  <p class="boxed-1" style="margin-bottom: 0px;">{{item.quantity}}</p>
+                </div>
+                <div class=" pl-0 flex-sm-col col-3 my-auto product-price">
+                  <p style="margin-bottom: 0px; text-align: right;"><b>$ {{item.product.price | floatformat:0}}</b></p>
+                </div>
+              </div>
+              {% endfor %}
+
+              <hr class="my-2">
+              <div class="row ">
+                <div class="col">
+                  <div class="row justify-content-between">
+                    <div class="col-4">
+                      <p class="mb-1"><b>Subtotal</b></p>
+                    </div>
+                    <div class="flex-sm-col col-auto">
+                      <p class="mb-1"><b>$ {{order.get_cart_total | floatformat:0}}</b></p>
+                    </div>
+
+                  </div>
+                  <div class="row justify-content-between">
+                    <div class="col-4">
+                      <p class="mb-1"><b>Quantity</b></p>
+                    </div>
+                    <div class="flex-sm-col col-auto">
+                      <p class="mb-1"><b>{{order.get_cart_items}}</b></p>
+                    </div>
+                  </div>
+
+                  <div class="row justify-content-between">
+                    <div class="col">
+                      <p class="mb-1"><b>Shipping</b></p>
+                    </div>
+                    <div class="flex-sm-col col-auto">
+                      <p class="mb-1"><b>$ 0</b></p>
+                    </div>
+                  </div>
+                  <div class="row justify-content-between">
+                    <div class="col-4">
+                      <p><b>Total</b></p>
+                    </div>
+                    <div class="flex-sm-col col-auto">
+                      <p class="mb-1"><b>$ {{order.get_cart_total | floatformat:0}}</b></p>
+                    </div>
+                  </div>
+                  <hr class="my-0">
+                </div>
+              </div>
+              <div class="row mb-5 mt-4 ">
+                <div class="mx-auto">
+                  <button type="button" class="btn btn-outline-success" value="" style="font-size: large; border: 1px solid rgb(184, 182, 182); color: rgb(32, 32, 32) !important; font-weight: bold; padding: 10px;">
+                    PURCHASE
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock main-content %}
